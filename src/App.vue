@@ -1,18 +1,28 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="container-timers">
+      <div v-for="(timer, index) in timeLimits" :key="index">
+        {{ timer }}
+        <BaseTimer :limitTime="timer"> </BaseTimer>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BaseTimer from './components/BaseTimer.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    BaseTimer
+  }, 
+  data: () => {
+    return {
+      timeLimits: ['2020-06-28:01:18:45', '2020-06-29:03:59:45', '2020-06-30:23:59:45']
+    }
+  }, 
+ 
 }
 </script>
 
@@ -24,5 +34,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.container-timers {
+  display: flex;
 }
 </style>
